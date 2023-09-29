@@ -5,21 +5,32 @@
     <title>Calculation Result</title>
 </head>
 <body>
-<?php # handle_form.php
-//Validation of input data, check empty
+<?php
+//you were using the variables '$operation', '$num1' and '$num2' before they were defined
+// Retrieve and cast the data by using $_REQUEST or $_POST and name of the textboxes
+//aded line 12-14
+//all i did was make them a funct
+$num1 = isset($_POST['number1']) ? (int)$_POST['number1'] : 0;
+$num2 = isset($_POST['number2']) ? (int)$_POST['number2'] : 0;
+$operation = isset($_POST['operation']) ? $_POST['operation'] : '';
 
-if(empty($_POST['number1']) || empty($_POST['number2'])){
+// Validation of input data, check empty
+//changed from POST to $num1
+if (empty($num1) || empty($num2)) {
     echo "Error: Please fill out both fields";
 } else {
-    if (!is_numeric($_POST['number1']) || !isnumeric($_POST['number1'])) {
-    echo "Error: Both fields must contain numeric values.";
-    }else{
-        //Checks if dividing by 0
-        if($operation == 'divide' && $num2 == 0) {
+    //you had a type here you hade !isnumeric it needed a _
+    //changed post for $num1 
+    if (!is_numeric($num1) || !is_numeric($num2)) {
+        echo "Error: Both fields must contain numeric values.";
+    } else {
+        // Checks if dividing by 0
+        if ($operation == 'divide' && $num2 == 0) {
             echo "Division by 0 not allowed. Please enter a different number.";
         } else {
-            //Runs the calculation based on operation
-            switch($operation) {
+            // Runs the calculation based on the operation
+            // added a space
+            switch ($operation) {
                 case 'add':
                     $result = $num1 + $num2;
                     break;
@@ -40,23 +51,16 @@ if(empty($_POST['number1']) || empty($_POST['number2'])){
                     break;
             }
 
-
             // Print the submitted information:
-            echo "<p> The result is $result<p>";
-
-
+                //you forgot to close the <p>
+            echo "<p> The result is $result</p>";
         }
-    }   
+    }
 }
+?>
 
-
-
-
-//retrieve and cast the data by using $_REQUEST or $_POST and name of the textboxes
-$num1 = (int) $_POST['number1'];
-$num2 = (int) $_POST['number2'];
-$operation = $_REQUEST['operation'];
-//$operation = "add";
+</body>
+</html>
 
 /*
 PHP if....else...elseif statement
@@ -97,8 +101,4 @@ if ($operation == "modulus") $result = $num1%$num2;*/
 
 
 /*// Print the submitted information:
-echo "<p> The result is $result<p>";*/
-
-?>
-</body>
-</html>
+echo "" The result is $result";*/

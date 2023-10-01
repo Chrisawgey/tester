@@ -17,19 +17,19 @@
             var num2 = document.forms["calculationForm"]["number2"].value;
 
             if (num1 === "" || num2 === "") {
-                alert("Please fill out both fields mothafucka."); 
+                alert("Please fill out both fields."); 
                 return false;
             }
             //is nan is if its not a number
             if (isNaN(num1) || isNaN(num2)) {
-                alert("Both fields need to be a number.");
+                alert("Error: Both fields need to be numeric values.");
                 return false;
             }
 
             var operation = document.forms["calculationForm"]["operation"].value;
 
             if (operation === "divide" && num2 == 0) {
-                alert("Division by 0 not allowed. bro.");
+                alert("Division by 0 not allowed. Please eneter a different number");
                 return false;
             }
 
